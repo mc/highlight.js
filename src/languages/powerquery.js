@@ -8,7 +8,7 @@
 /** @type LanguageFn */
 export default function(hljs) {
     const KEYWORDS = 'type nullable number';
-    const BUILTIN  = 'each';
+    const BUILTIN  = 'each let in';
 
     const QUOTE_STRING = {
           className: 'string',
@@ -26,6 +26,11 @@ export default function(hljs) {
           contains: [ hljs.BACKSLASH_ESCAPE ]
         };
 
+    const TableFunctions = {
+          className: 'function',
+          begin: /Table\.(Combine|FindText|IsEmpty|Profile|Split|Group|Skip|Range|Repeat|(First|Last)N?|View(Function)?|(Alternate|Insert|Select|Reverse|Replace)Rows|(Remove|Select)Rows(WithErrors)?|From(Columns|List|Records|Partitions|Rows|Value)|To(Columns|List|Records|Row)|Schema|Fuzzy(Group|(Nested)?Join)|(Column|Row)Count|GetRelationships|Combine|FindText|FirstValue|Matches(All|Any)Rows|Partition|Remove(First|Last)N|SingleRow)/
+        };
+
     return {
           name: 'PowerQuery',
           keywords: {
@@ -34,6 +39,7 @@ export default function(hljs) {
                 },
           contains: [
                   hljs.NUMBER_MODE,
+                  TableFunctions,
                   COLUMN_NAME_1,
                   COLUMN_NAME_2,
                   QUOTE_STRING

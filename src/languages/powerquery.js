@@ -12,7 +12,7 @@ export default function(hljs) {
 
     const QUOTE_STRING = {
           className: 'string',
-          begin: /\\"/, end: /\\"/,
+          begin: /"/, end: /"/,
           contains: [ hljs.BACKSLASH_ESCAPE ]
         };
     const COLUMN_NAME_1 = {
@@ -22,7 +22,7 @@ export default function(hljs) {
         };
     const COLUMN_NAME_2 = {
           className: 'symbol',
-          begin: /\\[#\\"/, end: /\\"\\]/,
+          begin: /\\[#"/, end: /"\\]/,
           contains: [ hljs.BACKSLASH_ESCAPE ]
         };
 
@@ -33,8 +33,6 @@ export default function(hljs) {
                   built_in: BUILTIN
                 },
           contains: [
-                  hljs.REGEXP_MODE,
-                  hljs.HASH_COMMENT_MODE,
                   hljs.NUMBER_MODE,
                   COLUMN_NAME_1,
                   COLUMN_NAME_2,
